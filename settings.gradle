@@ -1,0 +1,13 @@
+rootProject.name = 'GeoPagos'
+
+assignProperty('browserName', 'chrome')
+assignProperty('appUrl', 'http://www.fravega.com')
+assignProperty('appDefaultWait', '10')
+assignProperty('pageLoadWait', '300')
+assignProperty('driverPath', '/home/cesar/Downloads/chromedriver')
+
+def assignProperty(key, defaultValue){
+    if(System.getProperty(key) == null){
+        System.setProperty(key, defaultValue)
+    }
+}
