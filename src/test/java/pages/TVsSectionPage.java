@@ -10,8 +10,8 @@ import java.util.List;
 public class TVsSectionPage extends BasePage {
     private final By sortByLabel = By.xpath("//label[normalize-space(text())='Más relevantes']");
     private final By minorPriceOption = By.xpath("//ul/li/a[normalize-space(text())='Menor precio']");
-    private final By items = By.xpath("//ol[@id='searchResults']/li");
-    private String itemPrice = "//span[contains(text(), '%s')]";
+    private final By items = By.xpath("//ol[@id='searchResults']/li//h2");
+    private final By itemPrice = By.xpath("//span[@class='price-tag-fraction']");
 
     public void sortByMinorPrice() {
         Assert.assertTrue("No se encontro el label para orden 'Mas relevante'", find(sortByLabel));
@@ -31,8 +31,7 @@ public class TVsSectionPage extends BasePage {
     }
 
     public void validatePrice(String price) {
-        By locator = By.xpath(String.format(this.itemPrice, price));
-        Assert.assertEquals("El precio del ultimo item no coincide con " + price, price, getText(locator));
+        Assert.assertEquals("El precio del item no coincide con " + price, price, getText(itemPrice));
     }
 
 }
